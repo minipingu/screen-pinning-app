@@ -84,6 +84,9 @@ Bertanggung jawab atas pengaturan window saat perangkat dalam kondisi terkunci s
 - **`onCreate(Bundle savedInstanceState)`**: Mendaftarkan plugin `ScreenPinningPlugin`, memanggil `configureWindowForAlarm()`, dan memproses intent alarm saat aplikasi dimulai dari kondisi mati (*cold start*).
 - **`onNewIntent(Intent intent)`**: Memastikan window dikonfigurasi ulang dan alarm diproses saat aplikasi sudah berada di memori (*singleTask resume*).
 - **`handleAlarmIntent(Intent intent)`**: Mengecek apakah intent membawa flag `EXTRA_ALARM_TRIGGERED` atau SharedPreferences aktif, lalu memicu event notifikasi ke React.
+- **`hideSystemBars()`**: Menyembunyikan bilah navigasi sistem (bottom bar) dan status bar (jam, sinyal, indikator baterai) menggunakan `WindowInsetsControllerCompat` dengan perilaku `BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE` serta fallback `SYSTEM_UI_FLAG_IMMERSIVE_STICKY`, menciptakan tampilan *true full-screen immersive*.
+- **`showSystemBars()`**: Memulihkan kembali bilah navigasi dan status bar sistem setelah alarm dimatikan.
+- **`onUserLeaveHint()` & `onBackPressed()`**: Proteksi Kiosk Mandiri tanpa perlu ADB. Memblokir tombol kembali (*Back*) dan secara otomatis menarik kembali aplikasi ke baris depan (*foreground*) jika pengguna menekan tombol *Home* atau *Recent Apps* saat alarm masih aktif.
 
 ---
 

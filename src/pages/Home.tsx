@@ -199,12 +199,18 @@ const Home: React.FC = () => {
                   {permissions.pinningEnabled ? '✓ Mode Pinning: Aktif' : '⚠️ Mode Pinning: Belum Aktif'}
                 </span>
                 {!permissions.pinningEnabled && (
-                  <p style={{ fontSize: '0.85rem', color: '#64748b', margin: '4px 0 6px 0' }}>
-                    Agar layar terkunci saat alarm berbunyi, aktifkan <b>App pinning</b> di pengaturan.
+                  <div style={{ marginTop: '4px' }}>
+                    <p style={{ fontSize: '0.85rem', color: '#64748b', margin: '4px 0 6px 0', lineHeight: 1.4 }}>
+                      Agar layar terkunci saat alarm berbunyi, aktifkan <b>Pin app</b> (Sematkan aplikasi).
+                      <br />
+                      <span style={{ fontSize: '0.8rem', color: '#0284c7', display: 'block', marginTop: '4px' }}>
+                        👉 <b>Di Samsung:</b> Tap tombol di bawah ➔ Scroll ke bawah ➔ Tap <b>"More security settings"</b> ➔ Aktifkan <b>"Pin app"</b>.
+                      </span>
+                    </p>
                     <button className="secondary-btn" style={{ padding: '8px 12px', marginTop: '6px' }} onClick={() => ScreenPinning.openScreenPinningSettings()}>
                       Buka Pengaturan Keamanan
                     </button>
-                  </p>
+                  </div>
                 )}
               </div>
 
@@ -242,33 +248,31 @@ const Home: React.FC = () => {
                 )}
               </div>
 
-              {/* 4. Pinning Langsung Tanpa Dialog Got It (Mode Kiosk / Device Owner) */}
+              {/* 4. Mode Kiosk & Anti-Keluar Mandiri */}
               <div style={{ marginTop: '12px' }}>
-                <span className={`status-badge ${permissions.isLockTaskPermitted || permissions.isDeviceOwner ? 'ready' : 'warning'}`}>
+                <span className={`status-badge ${permissions.isLockTaskPermitted || permissions.isDeviceOwner ? 'ready' : 'ready'}`}>
                   {permissions.isLockTaskPermitted || permissions.isDeviceOwner
-                    ? '✓ Pinning Langsung (Tanpa Got It): Aktif'
-                    : 'ℹ️ Pinning Langsung (Tanpa Got It): Butuh Perintah ADB'}
+                    ? '✓ Kiosk Penuh (Device Owner): Aktif'
+                    : '✓ Kiosk Anti-Keluar Mandiri: Aktif'}
                 </span>
-                {!(permissions.isLockTaskPermitted || permissions.isDeviceOwner) && (
-                  <div style={{ marginTop: '4px', background: '#f8fafc', padding: '10px', borderRadius: '8px', border: '1px solid #e2e8f0' }}>
-                    <p style={{ fontSize: '0.82rem', color: '#475569', margin: '0 0 6px 0', lineHeight: 1.4 }}>
-                      Agar Android langsung mem-pin layar <b>tanpa menampilkan tombol konfirmasi "Got It"</b>, sistem Android mewajibkan hak Device Owner via ADB:
-                    </p>
-                    <code style={{ fontSize: '0.75rem', background: '#e2e8f0', padding: '4px 6px', borderRadius: '4px', display: 'block', wordBreak: 'break-all' }}>
-                      adb shell dpm set-device-owner io.ionic.starter/.AdminReceiver
-                    </code>
-                    <button
-                      className="secondary-btn"
-                      style={{ padding: '6px 10px', marginTop: '8px', fontSize: '0.8rem' }}
-                      onClick={async () => {
-                        await ScreenPinning.enableKioskMode();
-                        checkAllPermissions();
-                      }}
-                    >
-                      Periksa Ulang Status Kiosk
-                    </button>
-                  </div>
-                )}
+                <div style={{ marginTop: '4px', background: '#f8fafc', padding: '10px', borderRadius: '8px', border: '1px solid #e2e8f0' }}>
+                  <p style={{ fontSize: '0.82rem', color: '#334155', margin: '0 0 6px 0', lineHeight: 1.4 }}>
+                    🛡️ <b>Tanpa Perlu ADB:</b> Saat alarm berbunyi, tombol Kembali & Home otomatis terkunci sehingga pengguna tidak bisa keluar sebelum kuis dijawab.
+                  </p>
+                  {!(permissions.isLockTaskPermitted || permissions.isDeviceOwner) && (
+                    <details style={{ marginTop: '6px' }}>
+                      <summary style={{ fontSize: '0.8rem', color: '#0284c7', cursor: 'pointer', fontWeight: 600 }}>
+                        Lihat Opsi Kiosk Enterprise via ADB (Opsional)
+                      </summary>
+                      <p style={{ fontSize: '0.78rem', color: '#64748b', margin: '6px 0 4px 0', lineHeight: 1.4 }}>
+                        Untuk mengunci sistem hardware Android secara permanen tanpa dialog konfirmasi sama sekali, jalankan perintah satu kali via PC/laptop:
+                      </p>
+                      <code style={{ fontSize: '0.75rem', background: '#e2e8f0', padding: '4px 6px', borderRadius: '4px', display: 'block', wordBreak: 'break-all' }}>
+                        adb shell dpm set-device-owner io.ionic.starter/.AdminReceiver
+                      </code>
+                    </details>
+                  )}
+                </div>
               </div>
             </div>
 

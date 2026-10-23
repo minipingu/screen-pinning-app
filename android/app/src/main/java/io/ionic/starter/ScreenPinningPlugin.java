@@ -330,6 +330,11 @@ public class ScreenPinningPlugin extends Plugin {
 
         activity.runOnUiThread(() -> {
             try {
+                // Sembunyikan navigasi bawah dan topbar (jam & baterai)
+                if (activity instanceof MainActivity) {
+                    ((MainActivity) activity).hideSystemBars();
+                }
+
                 // Pastikan didaftarkan ke LockTask jika device owner
                 AdminReceiver.whitelistLockTask(activity);
 
@@ -370,6 +375,12 @@ public class ScreenPinningPlugin extends Plugin {
             } catch (Exception e) {
                 Log.w(TAG, "Peringatan stopLockTask: " + e.getMessage());
             }
+
+            // Kembalikan status bar dan navigation bar
+            if (activity instanceof MainActivity) {
+                ((MainActivity) activity).showSystemBars();
+            }
+
             stopAlarmSoundInternal(activity);
             JSObject ret = new JSObject();
             ret.put("success", true);
@@ -394,6 +405,10 @@ public class ScreenPinningPlugin extends Plugin {
     @PluginMethod
     public void stopAlarm(PluginCall call) {
         stopAlarmSoundInternal(getContext());
+        Activity activity = getActivity();
+        if (activity instanceof MainActivity) {
+            ((MainActivity) activity).showSystemBars();
+        }
         JSObject ret = new JSObject();
         ret.put("success", true);
         call.resolve(ret);
@@ -401,15 +416,39 @@ public class ScreenPinningPlugin extends Plugin {
 
     @PluginMethod
     public void openScreenPinningSettings(PluginCall call) {
-        try {
-            Intent intent = new Intent(Settings.ACTION_SECURITY_SETTINGS);
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            getContext().startActivity(intent);
-            JSObject ret = new JSObject();
-            ret.put("success", true);
-            call.resolve(ret);
-        } catch (Exception e) {
-            call.reject("Gagal membuka setting: " + e.getMessage());
+        Context context = getContext();
+
+        Intent[] targets = new Intent[]{
+            // 1. Samsung "More security settings" / "Other security settings"
+            new Intent().setComponent(new ComponentName("com.android.settings", "com.android.settings.Settings$OtherSecuritySettingsActivity")),
+            new Intent().setComponent(new ComponentName("com.android.settings", "com.samsung.android.settings.OtherSecuritySettingsActivity")),
+            new Intent().setComponent(new ComponentName("com.android.settings", "com.samsung.android.settings.securesettings.SecOtherSecuritySettings")),
+            // 2. Generic Screen Pinning Activity
+            new Intent().setComponent(new ComponentName("com.android.settings", "com.android.settings.Settings$ScreenPinningSettingsActivity")),
+            // 3. Action dengan fragment extra
+            new Intent(Settings.ACTION_SECURITY_SETTINGS)
+                .putExtra(":settings:show_fragment", "com.android.settings.security.screenlock.ScreenPinningSettings")
+                .putExtra(":settings:fragment_args_key", "screen_pinning_settings"),
+            // 4. Fallback standard Security Settings
+            new Intent(Settings.ACTION_SECURITY_SETTINGS),
+            // 5. Ultimate fallback
+            new Intent(Settings.ACTION_SETTINGS)
+        };
+
+        boolean opened = false;
+        for (Intent intent : targets) {
+            try {
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                context.startActivity(intent);
+                opened = true;
+                break;
+            } catch (Exception ignored) {
+                // Lanjut ke intent berikutnya jika komponen internal tidak diizinkan oleh OEM
+            }
         }
+
+        JSObject ret = new JSObject();
+        ret.put("success", opened);
+        call.resolve(ret);
     }
 }

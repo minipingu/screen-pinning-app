@@ -63,6 +63,27 @@
       "category": "Completed",
       "dueDate": null,
       "completed": true
+    },
+    {
+      "id": "1792722725848z5bmfc",
+      "title": "Build ulang APK dan verifikasi file MathAlarm-debug.apk",
+      "category": "Completed",
+      "dueDate": null,
+      "completed": true
+    },
+    {
+      "id": "1792723156479zbc5jf",
+      "title": "Implementasikan Kiosk Mandiri Anti-Keluar (onUserLeaveHint & block onBackPressed) tanpa perlu ADB",
+      "category": "Completed",
+      "dueDate": null,
+      "completed": true
+    },
+    {
+      "id": "1792723508538p71xv4",
+      "title": "Sembunyikan status bar (topbar) dan navigation bar (bottom) saat alarm berbunyi (Immersive Mode)",
+      "category": "Completed",
+      "dueDate": null,
+      "completed": true
     }
   ]
 }
