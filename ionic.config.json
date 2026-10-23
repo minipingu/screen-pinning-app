@@ -1,0 +1,7 @@
+{
+  "name": "screen-pinning-app",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react-vite"
+}

@@ -1,0 +1,249 @@
+.alarm-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  padding: 20px;
+  max-width: 500px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.header-section {
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 24px;
+}
+
+.header-section h1 {
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-bottom: 6px;
+  color: var(--ion-color-primary, #3880ff);
+}
+
+.header-section p {
+  color: #718096;
+  font-size: 0.95rem;
+  margin: 0;
+}
+
+.card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 18px 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e2e8f0;
+}
+
+.dark .card {
+  background: #1e293b;
+  border-color: #334155;
+}
+
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  padding: 6px 12px;
+  border-radius: 20px;
+  margin-bottom: 8px;
+}
+
+.status-badge.ready {
+  background: #def7ec;
+  color: #03543f;
+}
+
+.status-badge.warning {
+  background: #fef08a;
+  color: #713f12;
+}
+
+.time-picker-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin: 16px 0;
+}
+
+.time-input {
+  font-size: 2rem;
+  font-weight: 700;
+  text-align: center;
+  width: 90px;
+  padding: 10px;
+  border-radius: 12px;
+  border: 2px solid #cbd5e1;
+  background: #f8fafc;
+}
+
+.dark .time-input {
+  background: #0f172a;
+  border-color: #475569;
+  color: #fff;
+}
+
+.primary-btn {
+  background: #3b82f6;
+  color: #ffffff;
+  font-size: 1.05rem;
+  font-weight: 600;
+  padding: 14px 20px;
+  border-radius: 12px;
+  border: none;
+  width: 100%;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: all 0.2s ease;
+}
+
+.primary-btn:hover {
+  background: #2563eb;
+}
+
+.secondary-btn {
+  background: #f1f5f9;
+  color: #334155;
+  font-size: 0.95rem;
+  font-weight: 600;
+  padding: 12px 18px;
+  border-radius: 12px;
+  border: 1px solid #cbd5e1;
+  width: 100%;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.danger-btn {
+  background: #ef4444;
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 12px 20px;
+  border-radius: 12px;
+  border: none;
+  width: 100%;
+  cursor: pointer;
+  margin-top: 12px;
+}
+
+/* Ringing / Math Challenge Screen */
+.ringing-mode {
+  background: #fef2f2;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 24px;
+}
+
+.dark .ringing-mode {
+  background: #450a0a;
+}
+
+.ringing-card {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 24px;
+  box-shadow: 0 10px 25px rgba(220, 38, 38, 0.2);
+  text-align: center;
+  border: 2px solid #f87171;
+}
+
+.dark .ringing-card {
+  background: #1c1917;
+}
+
+.alarm-icon {
+  font-size: 3.5rem;
+  animation: shake 0.6s infinite;
+  display: inline-block;
+  margin-bottom: 12px;
+}
+
+@keyframes shake {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  20% {
+    transform: rotate(-15deg);
+  }
+
+  40% {
+    transform: rotate(15deg);
+  }
+
+  60% {
+    transform: rotate(-10deg);
+  }
+
+  80% {
+    transform: rotate(10deg);
+  }
+
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+.math-equation {
+  font-size: 2.4rem;
+  font-weight: 800;
+  letter-spacing: 2px;
+  margin: 18px 0;
+  color: #dc2626;
+}
+
+.math-input-display {
+  font-size: 2.2rem;
+  font-weight: 700;
+  background: #f8fafc;
+  border: 2px solid #cbd5e1;
+  border-radius: 12px;
+  padding: 10px;
+  text-align: center;
+  margin-bottom: 16px;
+  min-height: 58px;
+}
+
+.keypad {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.keypad-btn {
+  font-size: 1.4rem;
+  font-weight: 700;
+  padding: 16px 0;
+  background: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  cursor: pointer;
+  color: #0f172a;
+}
+
+.keypad-btn:active {
+  background: #e2e8f0;
+}
+
+.keypad-btn.action {
+  font-size: 1.1rem;
+  background: #fed7aa;
+  color: #9a3412;
+}
+
+.success-box {
+  background: #def7ec;
+  border: 2px solid #31c48d;
+  border-radius: 16px;
+  padding: 20px;
+  margin-top: 16px;
+  text-align: center;
+}

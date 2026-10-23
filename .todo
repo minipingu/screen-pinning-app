@@ -1,0 +1,68 @@
+{
+  "$instruction": "⚠️ DO NOT EDIT DIRECTLY. Use the TODO MCP tools (todo_get_tasks, todo_add_tasks, todo_update_tasks, todo_delete_tasks, todo_clear_category) to ensure live VS Code UI synchronization.",
+  "tasks": [
+    {
+      "id": "1792717190997m195yb",
+      "title": "Tambahkan permission, receiver, dan flags di AndroidManifest.xml & MainActivity.java",
+      "category": "Completed",
+      "dueDate": null,
+      "completed": true
+    },
+    {
+      "id": "1792717190997vkn0k",
+      "title": "Implementasikan AlarmReceiver, Sound/Vibrate, dan ScreenPinningPlugin native methods",
+      "category": "Completed",
+      "dueDate": null,
+      "completed": true
+    },
+    {
+      "id": "1792717190997ijlzf4",
+      "title": "Update TypeScript interface ScreenPinning.ts & web fallback",
+      "category": "Completed",
+      "dueDate": null,
+      "completed": true
+    },
+    {
+      "id": "17927171909977ozkg",
+      "title": "Buat antarmuka Alarm & Math Challenge di src/pages/Home.tsx",
+      "category": "Completed",
+      "dueDate": null,
+      "completed": true
+    },
+    {
+      "id": "179271719099728wf4r",
+      "title": "Build project dan uji coba alarm di Android Emulator",
+      "category": "Completed",
+      "dueDate": null,
+      "completed": true
+    },
+    {
+      "id": "1792717800594m2be5u",
+      "title": "Perbaiki peluncuran activity dari kondisi app killed menggunakan setAlarmClock, BAL options, dan DismissKeyguard",
+      "category": "Completed",
+      "dueDate": null,
+      "completed": true
+    },
+    {
+      "id": "1792719180611jp76a",
+      "title": "Hilangkan dialog konfirmasi Got it saat pinning (langsung pinned)",
+      "category": "Completed",
+      "dueDate": null,
+      "completed": true
+    },
+    {
+      "id": "1792719713753xway68",
+      "title": "Buat dokumentasi README.md lengkap dengan flowchart, tech stack, dan penjelasan fungsi native",
+      "category": "Completed",
+      "dueDate": null,
+      "completed": true
+    },
+    {
+      "id": "17927207943106nxlf8r",
+      "title": "Build final APK dan salin ke root project agar mudah diakses",
+      "category": "Completed",
+      "dueDate": null,
+      "completed": true
+    }
+  ]
+}
